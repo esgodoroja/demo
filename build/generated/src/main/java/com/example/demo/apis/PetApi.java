@@ -21,18 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-08-06T01:46:52.084+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-08-07T00:11:39.779+03:00")
 
 @Api(value = "Pet", description = "the Pet API")
 @RequestMapping(value = "/v2")
 public interface PetApi {
 
-    @ApiOperation(value = "Add a new pet to the store", nickname = "addPet", notes = "", response = Pet.class, authorizations = {
-        @Authorization(value = "petstore_auth", scopes = {
-            @AuthorizationScope(scope = "write:pets", description = "modify pets in your account"),
-            @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-    }, tags={ "pet", })
+    @ApiOperation(value = "Add a new pet to the store", nickname = "addPet", notes = "", response = Pet.class, tags={ "pet", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Pet.class),
         @ApiResponse(code = 405, message = "Invalid input") })
@@ -43,12 +38,7 @@ public interface PetApi {
     ResponseEntity<Pet> addPet(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )  @Valid @RequestBody Pet body);
 
 
-    @ApiOperation(value = "Deletes a pet", nickname = "deletePet", notes = "", authorizations = {
-        @Authorization(value = "petstore_auth", scopes = {
-            @AuthorizationScope(scope = "write:pets", description = "modify pets in your account"),
-            @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-    }, tags={ "pet", })
+    @ApiOperation(value = "Deletes a pet", nickname = "deletePet", notes = "", tags={ "pet", })
     @ApiResponses(value = { 
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
         @ApiResponse(code = 404, message = "Pet not found") })
@@ -58,12 +48,7 @@ public interface PetApi {
     ResponseEntity<Void> deletePet(@ApiParam(value = "Pet id to delete",required=true) @PathVariable("petId") Long petId,@ApiParam(value = "" ) @RequestHeader(value="api_key", required=false) String apiKey);
 
 
-    @ApiOperation(value = "Finds Pets by status", nickname = "findPetsByStatus", notes = "Multiple status values can be provided with comma separated strings", response = Pet.class, responseContainer = "List", authorizations = {
-        @Authorization(value = "petstore_auth", scopes = {
-            @AuthorizationScope(scope = "write:pets", description = "modify pets in your account"),
-            @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-    }, tags={ "pet", })
+    @ApiOperation(value = "Finds Pets by status", nickname = "findPetsByStatus", notes = "Multiple status values can be provided with comma separated strings", response = Pet.class, responseContainer = "List", tags={ "pet", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Pet.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "Invalid status value") })
@@ -73,9 +58,7 @@ public interface PetApi {
     ResponseEntity<List<Pet>> findPetsByStatus(@NotNull @ApiParam(value = "Status values that need to be considered for filter", required = true, allowableValues = "available, pending, sold") @Valid @RequestParam(value = "status", required = true) List<String> status);
 
 
-    @ApiOperation(value = "Find pet by ID", nickname = "getPetById", notes = "Returns a single pet", response = Pet.class, authorizations = {
-        @Authorization(value = "api_key")
-    }, tags={ "pet", })
+    @ApiOperation(value = "Find pet by ID", nickname = "getPetById", notes = "Returns a single pet", response = Pet.class, tags={ "pet", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Pet.class),
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
@@ -86,12 +69,7 @@ public interface PetApi {
     ResponseEntity<Pet> getPetById(@ApiParam(value = "ID of pet to return",required=true) @PathVariable("petId") Long petId);
 
 
-    @ApiOperation(value = "Update an existing pet", nickname = "updatePet", notes = "", authorizations = {
-        @Authorization(value = "petstore_auth", scopes = {
-            @AuthorizationScope(scope = "write:pets", description = "modify pets in your account"),
-            @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-    }, tags={ "pet", })
+    @ApiOperation(value = "Update an existing pet", nickname = "updatePet", notes = "", tags={ "pet", })
     @ApiResponses(value = { 
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
         @ApiResponse(code = 404, message = "Pet not found"),
@@ -103,12 +81,7 @@ public interface PetApi {
     ResponseEntity<Void> updatePet(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )  @Valid @RequestBody Pet body);
 
 
-    @ApiOperation(value = "Updates a pet in the store with form data", nickname = "updatePetWithForm", notes = "", authorizations = {
-        @Authorization(value = "petstore_auth", scopes = {
-            @AuthorizationScope(scope = "write:pets", description = "modify pets in your account"),
-            @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-    }, tags={ "pet", })
+    @ApiOperation(value = "Updates a pet in the store with form data", nickname = "updatePetWithForm", notes = "", tags={ "pet", })
     @ApiResponses(value = { 
         @ApiResponse(code = 405, message = "Invalid input") })
     @RequestMapping(value = "/pet/{petId}",

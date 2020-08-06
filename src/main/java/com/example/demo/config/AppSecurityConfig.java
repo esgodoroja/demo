@@ -18,8 +18,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .authenticated()
         .and()
         .oauth2Login()
-        .redirectionEndpoint()
-        .and().defaultSuccessUrl("/swagger-ui.html");
+        .defaultSuccessUrl("/swagger-ui.html", true);
   }
 
 }

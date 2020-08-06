@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-@AutoConfigureMockMvc
-//@ContextConfiguration(classes = {PetApi.class})
-//@WebMvcTest
+@AutoConfigureMockMvc(addFilters = false)
 @SpringBootTest(classes = DemoApplication.class)
 class PetControllerTest {
 
@@ -24,7 +25,7 @@ class PetControllerTest {
 
   @Test
   void addPet_with_response_ok() throws Exception {
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/v2/pet")
+    mockMvc.perform(MockMvcRequestBuilders.post("/v2/pet")
         .contentType(MediaType.APPLICATION_JSON)
         .content(
             "{\"category\":{\"id\":1,\"name\":\"Category 1\"},\"name\":\"dog 2\",\"status\":\"available\"}")
@@ -36,7 +37,7 @@ class PetControllerTest {
   @Test
   @Disabled
   void addPet_with_response_bad_request() throws Exception {
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/v2/pet")
+    mockMvc.perform(MockMvcRequestBuilders.post("/v2/pet")
         .contentType(MediaType.APPLICATION_JSON)
         .content("{\"category\":{\"id\":1,\"name\":\"Category 1\"},\"status\":\"available\"}")
         .accept(MediaType.APPLICATION_JSON))
