@@ -24,7 +24,13 @@ Note: After generation, please remove *ApiClient.java classes, reduce additional
     * IDE: run `com.example.demo.DemoApplication.java` class
     * Windows: `./gradlew bootRun`
 
-## Docker run
+## Implemented endpoints
+* **Add Pet**
+    `POST: /pet`
+* **Get Pet**
+    `GET: /pet/{petId}`
+
+## Docker run(optional)
 
 * run `./gradlew bootJar`
 * build image ` docker build .`
