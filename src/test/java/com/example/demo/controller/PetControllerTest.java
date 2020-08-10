@@ -35,7 +35,7 @@ class PetControllerTest {
   }
 
   @Test
-  @Disabled
+  @Disabled(value = "need to check validation")
   void addPet_with_response_bad_request() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.post("/v2/pet")
         .contentType(MediaType.APPLICATION_JSON)

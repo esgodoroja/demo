@@ -1,16 +1,16 @@
 spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            client-id: 041443306ea97199bb7f
-            client-secret: 42540d6482755132d39ac4eab62d5868293c7c3f
-            clientAuthenticationScheme: form
-            authenticationScheme: query
-            scope: user
-            userAuthorizationUri: https://github.com/login/oauth/authorize
-            accessTokenUri: https://github.com/login/oauth/access_token
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            client-id: 041443306ea97199bb7f
+#            client-secret: 42540d6482755132d39ac4eab62d5868293c7c3f
+#            clientAuthenticationScheme: form
+#            authenticationScheme: query
+#            scope: user
+#            userAuthorizationUri: https://github.com/login/oauth/authorize
+#            accessTokenUri: https://github.com/login/oauth/access_token
   h2:
     console:
       enabled: true
@@ -25,3 +25,14 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+keycloak:
+  realm: example
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: js-console
+#  credentials:
+#    secret: password
+  use-resource-role-mappings: true
+  bearer-only: true
+server:
+  port: 8000
